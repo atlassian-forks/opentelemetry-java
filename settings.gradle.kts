@@ -19,7 +19,7 @@ pluginManagement {
 
 plugins {
     id("com.gradle.enterprise") version "3.5"
-    id("maven-repo-auth") version "3.0.4"
+    id("net.linguica.maven-settings") version "0.5"
 }
 
 dependencyResolutionManagement {
