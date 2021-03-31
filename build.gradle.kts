@@ -16,7 +16,6 @@ import java.time.Duration
 plugins {
     id("com.diffplug.spotless")
     id("com.github.ben-manes.versions")
-    id("io.codearte.nexus-staging")
     id("nebula.release")
 
     id("com.google.protobuf") apply false
@@ -54,17 +53,6 @@ if (file(".git").exists()) {
     }
 } else {
     releaseTask = tasks.register("release")
-}
-
-nexusStaging {
-    packageGroup = "io.opentelemetry"
-    username = System.getenv("SONATYPE_USER")
-    password = System.getenv("SONATYPE_KEY")
-
-    // We have many artifacts so Maven Central takes a long time on its compliance checks. This sets
-    // the timeout for waiting for the repository to close to a comfortable 50 minutes.
-    numberOfRetries = 300
-    delayBetweenRetriesInMillis = 10000
 }
 
 subprojects {
