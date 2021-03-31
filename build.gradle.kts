@@ -427,16 +427,11 @@ subprojects {
         configure<PublishingExtension> {
             repositories {
                 maven {
-                    url = URI.create(if (version.toString().endsWith("-SNAPSHOT")) {
-                        "https://packages.atlassian.com/mvn/maven-private-snapshot/"
-                    } else {
-                        "https://packages.atlassian.com/mvn/maven-private/"
-                    })
+                    url = URI.create("https://packages.atlassian.com/maven/repository/internal")
                 }
             }
 
             publications {
-                publishBuildInfo = false
                 register<MavenPublication>("mavenPublication") {
                     val release = findProperty("otel.release")
                     if (release != null) {
