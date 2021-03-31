@@ -10,6 +10,7 @@ import org.gradle.api.plugins.JavaPlugin.*
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import ru.vyarus.gradle.plugin.animalsniffer.AnimalSnifferExtension
 import ru.vyarus.gradle.plugin.animalsniffer.AnimalSnifferPlugin
+import java.net.URI
 import java.time.Duration
 
 plugins {
@@ -420,6 +421,16 @@ subprojects {
         plugins.apply("de.marcphilipp.nexus-publish")
 
         configure<PublishingExtension> {
+            repositories {
+                maven {
+                    url = URI.create(if (version.toString().endsWith("-SNAPSHOT")) {
+                        "https://packages.atlassian.com/mvn/maven-private-snapshot/"
+                    } else {
+                        "https://packages.atlassian.com/mvn/maven-private/"
+                    })
+                }
+            }
+
             publications {
                 register<MavenPublication>("mavenPublication") {
                     val release = findProperty("otel.release")
