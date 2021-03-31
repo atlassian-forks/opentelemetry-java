@@ -425,6 +425,7 @@ subprojects {
         configure<PublishingExtension> {
             repositories {
                 maven {
+                    name = "atlassian"
                     url = URI.create("https://packages.atlassian.com/mvn/maven-private")
                 }
             }
@@ -484,23 +485,6 @@ subprojects {
                     }
                 }
             }
-        }
-
-        configure<NexusPublishExtension> {
-            repositories {
-                sonatype()
-            }
-
-            connectTimeout.set(Duration.ofMinutes(5))
-            clientTimeout.set(Duration.ofMinutes(5))
-        }
-
-        val publishToSonatype by tasks.getting
-        releaseTask.configure {
-            finalizedBy(publishToSonatype)
-        }
-        rootProject.tasks.named("closeAndReleaseRepository") {
-            mustRunAfter(publishToSonatype)
         }
 
         tasks.withType(Sign::class) {
