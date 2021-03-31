@@ -44,6 +44,7 @@ if (file(".git").exists()) {
 
     nebulaRelease {
         addReleaseBranchPattern("""v\d+\.\d+\.x""")
+        addReleaseBranchPattern("""release-\d+\.\d+\.\d+-atlassian-\d""")
     }
 
     releaseTask = tasks.named("release")
