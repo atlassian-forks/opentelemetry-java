@@ -410,6 +410,7 @@ subprojects {
         configure<PublishingExtension> {
             repositories {
                 maven {
+                    name = "atlassian-3rdparty"
                     url = URI.create("https://packages.atlassian.com/maven-3rdparty")
                 }
             }
