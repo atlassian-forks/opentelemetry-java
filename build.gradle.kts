@@ -18,7 +18,6 @@ plugins {
     id("com.github.ben-manes.versions")
     id("io.codearte.nexus-staging")
     id("nebula.release")
-    id("org.hibernate.build.maven-repo-auth") version "3.0.4"
 
     id("com.google.protobuf") apply false
     id("de.marcphilipp.nexus-publish") apply false
@@ -26,7 +25,7 @@ plugins {
     id("me.champeau.gradle.jmh") apply false
     id("net.ltgt.errorprone") apply false
     id("ru.vyarus.animalsniffer") apply false
-
+    id("org.hibernate.build.maven-repo-auth") apply false
 }
 
 if (!JavaVersion.current().isJava11Compatible()) {
@@ -419,6 +418,8 @@ subprojects {
     }
 
     plugins.withId("maven-publish") {
+        plugins.apply("org.hibernate.build.maven-repo-auth")
+
         plugins.apply("signing")
 
         plugins.apply("de.marcphilipp.nexus-publish")

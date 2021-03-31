@@ -14,6 +14,7 @@ pluginManagement {
         id("org.jetbrains.kotlin.jvm") version "1.4.21"
         id("org.unbroken-dome.test-sets") version "3.0.1"
         id("ru.vyarus.animalsniffer") version "1.5.2"
+        id("org.hibernate.build.maven-repo-auth") version "3.0.4"
     }
 }
 
