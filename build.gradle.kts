@@ -436,6 +436,7 @@ subprojects {
             }
 
             publications {
+                publishBuildInfo = false
                 register<MavenPublication>("mavenPublication") {
                     val release = findProperty("otel.release")
                     if (release != null) {
