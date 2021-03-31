@@ -58,6 +58,7 @@ if (file(".git").exists()) {
 
 nexusStaging {
     packageGroup = "io.opentelemetry"
+    serverUrl = "https://packages.atlassian.com/mvn/maven-private/"
     // We have many artifacts so Maven Central takes a long time on its compliance checks. This sets
     // the timeout for waiting for the repository to close to a comfortable 50 minutes.
     numberOfRetries = 300
