@@ -39,7 +39,7 @@ if (!JavaVersion.current().isJava11Compatible()) {
 var releaseTask: TaskProvider<Task>
 if (file(".git").exists()) {
     release {
-        defaultVersionStrategy = Strategies.getDEFAULT()
+        defaultVersionStrategy = Strategies.getFINAL()
     }
 
     nebulaRelease {
