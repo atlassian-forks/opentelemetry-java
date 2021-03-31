@@ -58,9 +58,6 @@ if (file(".git").exists()) {
 
 nexusStaging {
     packageGroup = "io.opentelemetry"
-    username = System.getenv("SONATYPE_USER")
-    password = System.getenv("SONATYPE_KEY")
-
     // We have many artifacts so Maven Central takes a long time on its compliance checks. This sets
     // the timeout for waiting for the repository to close to a comfortable 50 minutes.
     numberOfRetries = 300
@@ -530,7 +527,7 @@ allprojects {
                 val updatedText = readmeText
                         .replace("""<version>\d+\.\d+\.\d+</version>""".toRegex(), "<version>${version}</version>")
                         .replace("""<version>\d+\.\d+\.\d+-SNAPSHOT</version>""".toRegex(), "<version>${nextSnapshot}</version>")
-                        .replace("""(implementation.*io\.opentelemetry:.*:)(\d+\.\d+\.\d+)(?!-SNAPSHOT)(.*)""".toRegex(), "\$1${version}\$3")
+                        .replace("""(implementation.*io\.opentelenexusStagingmetry:.*:)(\d+\.\d+\.\d+)(?!-SNAPSHOT)(.*)""".toRegex(), "\$1${version}\$3")
                         .replace("""(implementation.*io\.opentelemetry:.*:)(\d+\.\d+\.\d+-SNAPSHOT)(.*)""".toRegex(), "\$1${nextSnapshot}\$3")
                         .replace("""<!--VERSION_STABLE-->.*<!--/VERSION_STABLE-->""".toRegex(), "<!--VERSION_STABLE-->${version}<!--/VERSION_STABLE-->")
                         .replace("""<!--VERSION_UNSTABLE-->.*<!--/VERSION_UNSTABLE-->""".toRegex(), "<!--VERSION_UNSTABLE-->${version}-alpha<!--/VERSION_UNSTABLE-->")
