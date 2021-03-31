@@ -1,6 +1,5 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.google.protobuf.gradle.*
-import de.marcphilipp.gradle.nexus.NexusPublishExtension
 import io.morethan.jmhreport.gradle.JmhReportExtension
 import me.champeau.gradle.JMHPluginExtension
 import nebula.plugin.release.git.opinion.Strategies
@@ -11,16 +10,13 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import ru.vyarus.gradle.plugin.animalsniffer.AnimalSnifferExtension
 import ru.vyarus.gradle.plugin.animalsniffer.AnimalSnifferPlugin
 import java.net.URI
-import java.time.Duration
 
 plugins {
     id("com.diffplug.spotless")
     id("com.github.ben-manes.versions")
-    id("io.codearte.nexus-staging")
     id("nebula.release")
 
     id("com.google.protobuf") apply false
-    id("de.marcphilipp.nexus-publish") apply false
     id("io.morethan.jmhreport") apply false
     id("me.champeau.gradle.jmh") apply false
     id("net.ltgt.errorprone") apply false
@@ -54,15 +50,6 @@ if (file(".git").exists()) {
     }
 } else {
     releaseTask = tasks.register("release")
-}
-
-nexusStaging {
-    packageGroup = "io.opentelemetry"
-    serverUrl = "https://packages.atlassian.com/mvn/maven-private/"
-    // We have many artifacts so Maven Central takes a long time on its compliance checks. This sets
-    // the timeout for waiting for the repository to close to a comfortable 50 minutes.
-    numberOfRetries = 300
-    delayBetweenRetriesInMillis = 10000
 }
 
 subprojects {
@@ -419,8 +406,6 @@ subprojects {
         plugins.apply("org.hibernate.build.maven-repo-auth")
 
         plugins.apply("signing")
-
-        plugins.apply("de.marcphilipp.nexus-publish")
 
         configure<PublishingExtension> {
             repositories {
