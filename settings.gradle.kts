@@ -19,7 +19,6 @@ pluginManagement {
 
 plugins {
     id("com.gradle.enterprise") version "3.5"
-    id("net.linguica.maven-settings") version "0.5"
 }
 
 dependencyResolutionManagement {
