@@ -427,7 +427,7 @@ subprojects {
         configure<PublishingExtension> {
             repositories {
                 maven {
-                    url = URI.create("https://packages.atlassian.com/maven/repository/internal")
+                    url = URI.create("https://packages.atlassian.com/mvn/maven-private")
                 }
             }
 
